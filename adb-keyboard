@@ -9,7 +9,7 @@ import time
 
 print("""
 C-e HOME     | C-bksp BACK    | C-z SLEEP
-C-s SEARCH   | C-u    VOL+    | C-l VOL-
+C-s SEARCH   | C-o    VOL+    | C-l VOL-
 C-p SWIPE-R  | C-n    SWIPE-L | C-c EXIT
 """)
 
