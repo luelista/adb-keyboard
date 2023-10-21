@@ -7,14 +7,23 @@ import sys
 import termios
 import time
 
+print("""
+C-e HOME     | C-bksp BACK    | C-z SLEEP
+C-s SEARCH   | C-u    VOL+    | C-l VOL-
+C-p SWIPE-R  | C-n    SWIPE-L | C-c EXIT
+""")
+
 # https://developer.android.com/reference/android/view/KeyEvent.html#contstants
 SPECIAL_KEYS = {
-    0x05: 0x00000041, # c-e    : KEYCODE_ENVELOPE
+   # 0x05: 0x00000041, # c-e    : KEYCODE_ENVELOPE
+    0x05: 0x00000003, # c-e    : KEYCODE_HOME
     0x08: 0x00000004, # c-bksp : KEYCODE_BACK
     0x1a: 0x000000df, # c-z    : KEYCODE_SLEEP
     0x13: 0x00000054, # c-s    : KEYCODE_SEARCH
     0x7f: 0x00000043, # bksp   : KEYCODE_DEL
     0x0d: 0x00000017, # enter  : KEYCODE_DPAD_CENTER
+    0xf: 24, # c-u    : VOLUME UP
+    0xc: 25, # c-l    : VOLUME DOWN
     0x1b5b33: 0x00000070, # KEYCODE_FORWARD_DEL
     0x1b5b32: 0x0000007c, # KEYCODE_INSERT
     0x1b5b31: 0x0000007a, # KEYCODE_MOVE_HOME
@@ -95,7 +104,7 @@ try:
                 if len(characters) > 0 and characters[0] == 0x7e:
                     # Final semi-colon
                     characters.popleft()
-            #print("Current character 0x%x\r" % ch)
+            print("Current character 0x%x\r" % ch)
 
             if key_command is None:
                 # First character of loop, set mode based on first character
